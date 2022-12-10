@@ -7,28 +7,38 @@ $(currentDay).text(moment().format('MMM Do YYYY'));
 var container = $('.container');
 
 var timeblocks = {
-        9: '',
-        10: '',
-        11: '',
-        12: '',
-        13: '',
-        14: '',
-        15: '',
-        16: '',
-        17: ''
+   9: '',
+   10: '',
+   11: '',
+   12: '',
+   13: '',
+   14: '',
+   15: '',
+   16: '',
+   17: ''
 }
 
-$.each(timeblocks, function(key, value){
-   var hour = key;
-   var tasks = value;
-   container.append(`
-   <section class="row" id="hourSlot">
+function updateAgenda(){
+   $.each(timeblocks, function(key, value){
+      var hour = key;
+      var tasks = value;
+      container.append(`
+      <section class="row" id="hourSlot">
       <div class="timeblock hour">${hour}</div>
       <textarea name="tasks" id="tasks" rows="5" cols="80">${value}</textarea>
       <button class="saveBtn"></button>
-   </section>
-   `)
-})
+      </section>
+      `);
+   })
+}
+
+//Bring any data from localStorage into the timeblocks when the page loads
+if (JSON.parse(localStorage.getItem('hourly_tasks')) != null) {
+   timeblocks = JSON.parse(localStorage.getItem('hourly_tasks'));
+   updateAgenda();
+}else{
+   updateAgenda()
+}
 
 //Color code the timeblocks
 
@@ -56,16 +66,16 @@ var hourSlot = $('#hourSlot');
 var tasks = $('#tasks');
 var saveBtn = $('.saveBtn');
 var dayplans = [];
+var success = $('.success')
 
 saveBtn.on('click',function(){
    tasks = ($(this).siblings('#tasks').val());
    hourSlot = ($(this).siblings('.hour').text()); 
    timeblocks[hourSlot] = tasks; 
+   console.log(timeblocks);
+   //Save the event to localStorage
+   localStorage.setItem('hourly_tasks', JSON.stringify(timeblocks));
+   success.show(1000);
+   success.hide(1000);
 })
-
-//Save the event to localStorage
-
-//Bring any data from localStorage into the timeblocks when the page loads
-
-//
 
