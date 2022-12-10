@@ -22,35 +22,46 @@ $.each(timeblocks, function(key, value){
    var hour = key;
    var tasks = value;
    container.append(`
-   <section class="row">
-      <div class="timeblock hour">
-         ${hour}
-      </div>
-      <textarea name="tasks" id="tasks">
-         ${value}
-      </textarea>
-      <button class="saveBtn">
-      </button>
+   <section class="row" id="hourSlot">
+      <div class="timeblock hour">${hour}</div>
+      <textarea name="tasks" id="tasks" rows="5" cols="80">${value}</textarea>
+      <button class="saveBtn"></button>
    </section>
    `)
 })
 
 //Color code the timeblocks
 
-var hour = $('.hour');
+var currentHour = $('.hour');
 
-if((moment().format('H'))==hour){
-   hour.parent().addClass('present');
-} else if((moment().format('H'))>hour) {
-   hour.parent().addClass('past');
-}else{
-   hour.parent().addClass('future');
-}
+currentHour.each(function(){
+   console.log();
+   if((moment().format('H'))==$(this).text()){
+      console.log($(this).text());
+      $(this).parent().addClass('present');
+      console.log('entro al if');
+   } else if(parseInt((moment().format('H'))) > $(this).text()) {
+      $(this).parent().addClass('past');
+      console.log('entro al else if');
+   }else{
+      $(this).parent().addClass('future');
+      console.log('entro al else');
+   }
+   
+})
+
 
 //Allow the user to add text to the textarea 
+var hourSlot = $('#hourSlot');
 var tasks = $('#tasks');
 var saveBtn = $('.saveBtn');
+var dayplans = [];
 
+saveBtn.on('click',function(){
+   tasks = ($(this).siblings('#tasks').val());
+   hourSlot = ($(this).siblings('.hour').text()); 
+   timeblocks[hourSlot] = tasks; 
+})
 
 //Save the event to localStorage
 
