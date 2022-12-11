@@ -45,17 +45,12 @@ if (JSON.parse(localStorage.getItem('hourly_tasks')) != null) {
 var currentHour = $('.hour');
 
 currentHour.each(function(){
-   console.log();
    if((moment().format('H'))==$(this).text()){
-      console.log($(this).text());
       $(this).parent().addClass('present');
-      console.log('entro al if');
    } else if(parseInt((moment().format('H'))) > $(this).text()) {
       $(this).parent().addClass('past');
-      console.log('entro al else if');
    }else{
       $(this).parent().addClass('future');
-      console.log('entro al else');
    }
    
 })
@@ -72,7 +67,6 @@ saveBtn.on('click',function(){
    tasks = ($(this).siblings('#tasks').val());
    hourSlot = ($(this).siblings('.hour').text()); 
    timeblocks[hourSlot] = tasks; 
-   console.log(timeblocks);
    //Save the event to localStorage
    localStorage.setItem('hourly_tasks', JSON.stringify(timeblocks));
    success.show(1000);
