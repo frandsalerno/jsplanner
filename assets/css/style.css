@@ -3,20 +3,11 @@ body {
   line-height: 1;
   height: 100%;
   margin: 0;
-  background-color: hsl(228deg 71% 99%);
+  background-color: hsl(207deg 35% 19%);
   font-family: 'Montserrat', sans-serif;
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-textarea {
-  background: transparent;
-  border: none;
-  resize: none;
-  color: #000000;
-  border-left: 1px solid black;
-  padding: 10px;
 }
 
 .jumbotron {
@@ -28,6 +19,29 @@ textarea {
   flex-direction: column;
 }
 
+textarea {
+  background: #f9f9f930;
+  border: none;
+  resize: none;
+  color: #000000;
+  font-family: 'Montserrat', sans-serif;
+  padding: 10px;
+  margin: 0 5px;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+
+.success{
+  width: 300px;
+  color: #009863;
+  align-self: center;
+}
+
+#currentDay{  
+  font-size: 19px;
+  font-weight: 600;
+}
 .hide{
   display: none
 }
@@ -62,12 +76,14 @@ textarea {
   display: flex;
   padding: 10px;
   justify-content: space-between;
+  border-radius: 5px;
 }
 
 .hour {
-  background-color: #ffffff;
+  align-self: center;
   color: #000000;
-  width: 100px  ;
+  width: 100px;
+  font-size: 32px;
 }
 
 .past {
@@ -76,26 +92,28 @@ textarea {
 }
 
 .present {
-  background-color: #ff6961;
+  background-color: #ff6260 ;
   color: white;
 }
 
 .future {
-  background-color: #77dd77;
+  background-color: #3bde86;
   color: white;
 }
 
 .saveBtn {
-  border-left: 1px solid black;
-  border-top-right-radius: 15px;
-  border-bottom-right-radius: 15px;
-  background-color: #06aed5;
   color: white;
   width: 100px;
   cursor: pointer;
+  background: #0f8fc7;
+  border: none;
+  height: 40px;
+  align-self: center;
+  font-family: 'Montserrat', sans-serif;
+  border-radius: 5px;
+  font-size: 14px;
 }
 
-.saveBtn i:hover {
-  font-size: 20px;
-  transition: all 0.3s ease-in-out;
+.saveBtn:hover {
+  background: #41aedd;
 }
