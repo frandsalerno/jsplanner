@@ -24,7 +24,8 @@ function updateAgenda(){
       var tasks = value;
       container.append(`
       <section class="row" id="hourSlot">
-      <div class="timeblock hour">${hour}<span> hs</span></div>
+      <div class="timeblock hour">${hour}</div>
+      <span> hs</span>
       <textarea name="tasks" id="tasks" rows="5" cols="80">${value}</textarea>
       <button class="saveBtn">Save</button>
       </section>
