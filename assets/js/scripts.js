@@ -24,9 +24,9 @@ function updateAgenda(){
       var tasks = value;
       container.append(`
       <section class="row" id="hourSlot">
-      <div class="timeblock hour">${hour}</div>
+      <div class="timeblock hour">${hour}<span> hs</span></div>
       <textarea name="tasks" id="tasks" rows="5" cols="80">${value}</textarea>
-      <button class="saveBtn"></button>
+      <button class="saveBtn">Save</button>
       </section>
       `);
    })
@@ -44,15 +44,15 @@ if (JSON.parse(localStorage.getItem('hourly_tasks')) != null) {
 
 var currentHour = $('.hour');
 
+
 currentHour.each(function(){
    if((moment().format('H'))==$(this).text()){
       $(this).parent().addClass('present');
    } else if(parseInt((moment().format('H'))) > $(this).text()) {
       $(this).parent().addClass('past');
-   }else{
+   }else{ 
       $(this).parent().addClass('future');
    }
-   
 })
 
 
@@ -69,7 +69,7 @@ saveBtn.on('click',function(){
    timeblocks[hourSlot] = tasks; 
    //Save the event to localStorage
    localStorage.setItem('hourly_tasks', JSON.stringify(timeblocks));
-   success.show(1000);
+   success.show(1500);
    success.hide(1000);
 })
 
